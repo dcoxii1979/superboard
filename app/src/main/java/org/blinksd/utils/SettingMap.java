@@ -44,6 +44,7 @@ public class SettingMap extends ListedMap<String, SettingItem> {
             SET_KEY_LONGPRESS_DURATION = "key_longpress_duration",
             SET_KEY_TEXTCLR = "key_textclr",
             SET_COLORIZE_NAVBAR = "colorize_navbar",
+            SET_COLORIZE_NAVBAR_ALWAYS_TRANS = "colorize_navbar_always_trans",
             SET_DETECT_CAPSLOCK = "detect_capslock",
             SET_COLORIZE_NAVBAR_ALT = "colorize_navbar_alt",
             SET_DISABLE_POPUP = "disable_popup",
@@ -80,8 +81,10 @@ public class SettingMap extends ListedMap<String, SettingItem> {
         putGeneral(SET_KEYBOARD_SHOW_POPUP, SettingType.BOOL);
         putGeneral(SET_PLAY_SND_PRESS, SettingType.BOOL);
         putGeneral(SET_KEYBOARD_LC_ON_EMOJI, SettingType.BOOL);
-        if (!SystemUtils.isNotColorizeNavbar())
+        if (!SystemUtils.isNotColorizeNavbar()) {
             putTheming(SET_COLORIZE_NAVBAR, SettingType.BOOL, SET_COLORIZE_NAVBAR_ALT, false);
+            putTheming(SET_COLORIZE_NAVBAR_ALWAYS_TRANS, SettingType.BOOL, SET_COLORIZE_NAVBAR_ALT, false);
+        }
         if (Build.VERSION.SDK_INT >= 28)
             putTheming(SET_COLORIZE_NAVBAR_ALT, SettingType.BOOL, SET_COLORIZE_NAVBAR, false);
         putGeneral(SET_DISABLE_POPUP, SettingType.BOOL);
@@ -248,6 +251,8 @@ public class SettingMap extends ListedMap<String, SettingItem> {
                     return Defaults.KEY_TEXT_COLOR;
                 case SET_COLORIZE_NAVBAR:
                     return Defaults.COLORIZE_NAVBAR;
+                case SET_COLORIZE_NAVBAR_ALWAYS_TRANS:
+                    return Defaults.COLORIZE_NAVBAR_ALWAYS_TRANS;
                 case SET_DETECT_CAPSLOCK:
                     return Defaults.DETECT_CAPSLOCK;
                 case SET_COLORIZE_NAVBAR_ALT:

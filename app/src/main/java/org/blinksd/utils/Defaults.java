@@ -37,6 +37,7 @@ public final class Defaults {
     public static final boolean KEYBOARD_LC_ON_EMOJI = false;
     public static final boolean KEYBOARD_TOUCH_SOUND = true;
     public static final boolean COLORIZE_NAVBAR = true;
+    public static final boolean COLORIZE_NAVBAR_ALWAYS_TRANS = false;
     public static final boolean DETECT_CAPSLOCK = true;
     public static final boolean COLORIZE_NAVBAR_ALT = false;
     public static final boolean DISABLE_POPUP = false;

@@ -52,9 +52,16 @@ public final class SystemUtils {
         View v = new View(ctx);
         v.setId(android.R.attr.gravity);
         v.setLayoutParams(new ViewGroup.LayoutParams(-1, isColorized() ? navbarH(ctx) : -1));
-        boolean isLight = Build.VERSION.SDK_INT < 31 && ColorUtils.satisfiesTextContrast(ColorUtils.convertARGBtoRGB(color));
-        if (isLight)
-            color = ColorUtils.getDarkerColor(color);
+
+        boolean isForcedTrans = SuperDBHelper.getBooleanOrDefault(SettingMap.SET_COLORIZE_NAVBAR_ALWAYS_TRANS);
+        if (isForcedTrans) {
+            color = Color.TRANSPARENT;
+        } else {
+            boolean isLight = Build.VERSION.SDK_INT < 31 && ColorUtils.satisfiesTextContrast(ColorUtils.convertARGBtoRGB(color));
+            if (isLight)
+                color = ColorUtils.getDarkerColor(color);
+        }
+
         v.setBackgroundColor(color);
         return v;
     }
