@@ -323,12 +323,13 @@ public final class InputService extends InputMethodService implements
 
             superBoardView.setPressEventForKey(3, -1, 0, Keyboard.KEYCODE_MODE_CHANGE);
 
-            superBoardView.setDisableModifierForKeyboard(3, true);
+            // superBoardView.setDisableModifierForKeyboard(3, true);
 
             // set Fx buttons
             for (int i = 4; i < 6; i++) {
                 for (int g = 0; g < 6; g++) {
-                    superBoardView.setPressEventForKey(3, i, g, KeyEvent.KEYCODE_F1 + (g + (i * 6)));
+                    final int fIdx = ((i - 4) * 6) + g;
+                    superBoardView.setPressEventForKey(3, i, g, KeyEvent.KEYCODE_F1 + fIdx);
                 }
             }
 

@@ -58,9 +58,9 @@ public final class BackupRestoreActivity extends Activity {
     private Uri importedZipUri;
     private File dataFile;
 
-    private final int INCLUDE_OTHER = 0x01;
-    private final int INCLUDE_THEME = 0x02;
-    private final int INCLUDE_ALL = INCLUDE_OTHER | INCLUDE_THEME;
+    private static final int INCLUDE_OTHER = 0x01;
+    private static final int INCLUDE_THEME = 0x02;
+    private static final int INCLUDE_ALL = INCLUDE_OTHER | INCLUDE_THEME;
 
     private final int
             REQUEST_RESTORE_SELECT_FILE = 1,
