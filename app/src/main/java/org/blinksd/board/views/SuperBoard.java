@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "unused"})
 public class SuperBoard extends FrameLayout implements OnTouchListener {
     public static final int KEYCODE_CLOSE_KEYBOARD = -100;
     public static final int KEYCODE_SWITCH_LANGUAGE = -101;
@@ -1476,21 +1476,12 @@ public class SuperBoard extends FrameLayout implements OnTouchListener {
             subLabel.setTypeface(label.getTypeface());
         }
 
-        @Override
-        public Key clone() {
-            return clone(false);
-        }
-
-        public Key clone(boolean disableTouchEvent) {
-            return clone(new Key(getContext()), disableTouchEvent);
-        }
-
         public void clone(Key k) {
             clone(k, false);
         }
 
         @SuppressLint("ClickableViewAccessibility")
-        public Key clone(Key k, boolean disableTouchEvent) {
+        public void clone(Key k, boolean disableTouchEvent) {
             k.setBackgroundDrawable(getBackground());
             Rect r = getBackground().getBounds();
             k.getLayoutParams().width = r.right;
@@ -1511,7 +1502,6 @@ public class SuperBoard extends FrameLayout implements OnTouchListener {
                 k.setOnTouchListener(null);
             }
 
-            return k;
         }
     }
 }
