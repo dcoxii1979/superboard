@@ -165,9 +165,7 @@ public final class SetupActivityV2 extends Activity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             contentView.removeAllViews();
-                            View view = new ImageTextAndButtonView(
-                                    SetupActivityV2.this, content,
-                                    content.extraNextButton, content.smallImage);
+                            View view = new ImageTextAndButtonView(SetupActivityV2.this, content);
                             view.setAlpha(0);
                             contentView.addView(view);
                             view.animate().alpha(1).setDuration(duration).start();
@@ -183,8 +181,7 @@ public final class SetupActivityV2 extends Activity {
                     }).start();
         } else {
             contentView.removeAllViews();
-            contentView.addView(new ImageTextAndButtonView(
-                    this, content, content.extraNextButton, content.smallImage));
+            contentView.addView(new ImageTextAndButtonView(this, content));
         }
 
         currentPage = page;
@@ -269,8 +266,7 @@ public final class SetupActivityV2 extends Activity {
         final TextView textView;
         final Button buttonView;
 
-        private ImageTextAndButtonView(Context context, PageContent content,
-                                       boolean extraNextButton, boolean smallImage) {
+        private ImageTextAndButtonView(Context context, PageContent content) {
             super(context);
             setLayoutParams(new LayoutParams(-1, -1));
             imageView = new ImageView(context);
@@ -281,7 +277,7 @@ public final class SetupActivityV2 extends Activity {
             addView(textView);
             addView(buttonView);
             int imageSize = DensityUtils.dpInt(96);
-            int imageLayoutSize = smallImage ? (int) (imageSize / 2f) : imageSize;
+            int imageLayoutSize = content.smallImage ? (int) (imageSize / 2f) : imageSize;
             imageView.setLayoutParams(new LayoutParams(imageLayoutSize, imageLayoutSize));
             buttonView.setLayoutParams(new LayoutParams(imageSize * 3, -2));
             setGravity(Gravity.CENTER);
@@ -306,7 +302,7 @@ public final class SetupActivityV2 extends Activity {
             buttonView.setText(content.buttonText);
             buttonView.setOnClickListener(content.onButtonClick);
 
-            if (extraNextButton) {
+            if (content.extraNextButton) {
                 Button nextButton = new Button(context);
                 LayoutParams buttonParams = (LayoutParams) buttonView.getLayoutParams();
                 buttonParams = new LayoutParams(buttonParams.width, buttonParams.height);
